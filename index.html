@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c1930">
+  <meta name="description" content="Weather.Mania — Kenya weather, seasonal outlooks and community early warnings.">
+  <title>Weather.Mania — Kenya Weather Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Weather Mania home"><span class="brand-mark">☼</span><span>Weather<span class="brand-dot">.</span>Mania</span></a>
+    <div class="side-caption">YOUR WEATHER DESK</div>
+    <nav class="nav-list" aria-label="Main navigation">
+      <button class="nav-item active" data-view="overview"><span>⌂</span> Overview</button>
+      <button class="nav-item" data-view="forecast"><span>◷</span> Forecast</button>
+      <button class="nav-item" data-view="moon"><span>◐</span> Moon calendar</button>
+      <button class="nav-item" data-view="risks"><span>◇</span> Risk outlook</button>
+      <button class="nav-item" data-view="alerts"><span>♧</span> My alerts <i id="alert-count" class="count-badge">0</i></button>
+      <button class="nav-item pro-only" data-view="met-desk"><span>▦</span> Meteorologist desk</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-card">
+        <div class="mini-sun">☀</div>
+        <b>Prepared communities<br>are safer communities.</b>
+        <p>Know your local forecast. Plan ahead.</p>
+      </div>
+      <div class="sidebar-foot">Weather data for Kenya<br><span>Made for everyone, everywhere.</span></div>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <button id="menu-btn" class="mobile-menu" aria-label="Open navigation">☰</button>
+      <div class="crumb">Kenya <span>›</span> <b id="place-crumb">Nairobi</b></div>
+      <div class="top-actions">
+        <button id="voice-btn" class="icon-btn" title="Voice assistant" aria-label="Start voice assistant">◖</button>
+        <button id="location-btn" class="location-btn">◎ <span>Use my location</span></button>
+        <button id="role-toggle" class="role-toggle">Switch to meteorologist view <span>↗</span></button>
+        <div class="avatar">WM</div>
+      </div>
+    </header>
+
+    <section class="content" id="view-overview">
+      <div class="welcome-row">
+        <div>
+          <div class="eyebrow" id="today-label">KENYA WEATHER INTELLIGENCE</div>
+          <h1>Good morning, <span class="green-text">Kenya.</span></h1>
+          <p class="subtitle">A clearer picture of the weather where you are.</p>
+        </div>
+        <div class="updated-pill"><span class="live-dot"></span><span id="updated-label">Loading live data…</span></div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-copy">
+          <div class="tag"><span class="tag-dot"></span> LOCAL CONDITIONS <span id="hero-place">NAIROBI, KENYA</span></div>
+          <h2 id="hero-summary">A bright day, with a chance of showers.</h2>
+          <p id="hero-detail">Live forecast is loading for your area.</p>
+          <div class="hero-stats">
+            <div><span>Feels like</span><b id="feels-like">—°</b></div>
+            <div><span>Humidity</span><b id="humidity">—%</b></div>
+            <div><span>Wind</span><b id="wind-speed">— km/h</b></div>
+          </div>
+          <button class="text-link" data-goto="forecast">See full forecast <span>→</span></button>
+        </div>
+        <div class="weather-art" aria-hidden="true">
+          <div class="sun-glow"></div><div class="sun-disc"></div>
+          <div class="cloud cloud-back"></div><div class="cloud cloud-front"></div>
+          <div class="rain-lines"><i></i><i></i><i></i><i></i></div>
+          <div class="hill hill-one"></div><div class="hill hill-two"></div>
+          <div class="art-caption">SKY CONDITIONS <b id="art-condition">PARTLY CLOUDY</b></div>
+        </div>
+        <div class="hero-temp">
+          <strong id="current-temp">24</strong><span>°C</span>
+          <div id="condition-label">Partly cloudy</div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div><h2>Your day at a glance</h2><p>Useful details for planning today.</p></div>
+        <button class="subtle-btn" data-goto="forecast">7-day forecast <span>→</span></button>
+      </div>
+      <div class="forecast-strip" id="forecast-strip"><div class="loading-card">Fetching your local forecast…</div></div>
+
+      <div class="two-col">
+        <div class="panel elnino-panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">SEASONAL OUTLOOK</div><h3>El Niño & Kenya’s rains</h3></div>
+            <div class="enso-icon">≈</div>
+          </div>
+          <div class="enso-status">
+            <div class="status-indicator"><span></span> Check the latest official outlook</div>
+            <p>El Niño can influence Kenya’s rainfall, especially during the October–December short rains. Its effects vary by region and season.</p>
+            <div class="enso-meter">
+              <span class="meter-label">What to expect</span>
+              <div class="meter-track"><i></i></div>
+              <span class="meter-note">Use KMD seasonal guidance for the current outlook</span>
+            </div>
+            <a class="official-link" href="https://meteo.go.ke/our-products/seasonal-forecast/" target="_blank" rel="noreferrer">Open Kenya Met seasonal forecast ↗</a>
+          </div>
+          <div class="panel-footnote">Seasonal outlooks describe probabilities, not exact rain start dates. This panel does not claim to predict El Niño onset.</div>
+        </div>
+
+        <div class="panel moon-teaser">
+          <div class="panel-head">
+            <div><div class="eyebrow">TONIGHT’S SKY</div><h3>Moon watch</h3></div>
+            <a class="small-link" data-goto="moon">Calendar →</a>
+          </div>
+          <div class="moon-row">
+            <div class="moon-visual" id="moon-visual"><span>☾</span></div>
+            <div>
+              <div class="moon-phase" id="moon-phase">Waxing crescent</div>
+              <div class="moon-date" id="moon-date">Next full moon —</div>
+              <div class="moon-illum" id="moon-illum">Illumination —%</div>
+            </div>
+          </div>
+          <div class="moon-track"><span class="moon-track-fill" id="moon-track-fill"></span></div>
+          <div class="moon-track-label"><span>New moon</span><span>Full moon</span><span>New moon</span></div>
+        </div>
+      </div>
+
+      <div class="two-col lower-row">
+        <div class="panel risk-panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">COMMUNITY WATCH</div><h3>Weather risks nearby</h3></div>
+            <button class="small-link" data-goto="risks">All risks →</button>
+          </div>
+          <div id="risk-preview" class="risk-list"><div class="risk-placeholder">Risk signals appear when the local forecast is ready.</div></div>
+        </div>
+        <div class="panel reminder-panel">
+          <div class="reminder-art">◷</div>
+          <div class="reminder-content">
+            <div class="eyebrow">STAY A STEP AHEAD</div>
+            <h3>Set a weather reminder</h3>
+            <p>Get a heads-up when rain or strong winds are expected in your area.</p>
+            <button class="primary-btn" id="reminder-open">＋ Create reminder</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="data-note">
+        <span>ⓘ</span>
+        <div>
+          <b>Where our weather comes from</b>
+          <p>Short-range forecast: Open-Meteo weather models. Satellite-derived historical climate context: NASA POWER. Seasonal outlook: Kenya Meteorological Department. Always follow official local warnings for safety.</p>
+        </div>
+        <a href="https://open-meteo.com/en/docs" target="_blank" rel="noreferrer">Sources ↗</a>
+      </div>
+    </section>
+
+    <section class="content view-hidden" id="view-forecast">
+      <div class="page-heading">
+        <div><div class="eyebrow">LOCAL WEATHER</div><h1>Forecast <span class="green-text">for <span id="forecast-place">Nairobi</span></span></h1><p class="subtitle">Model-based outlook updated for your selected location.</p></div>
+        <div class="select-wrap">
+          <select id="region-select" aria-label="Select a Kenya region">
+            <option value="Nairobi">Nairobi</option><option value="Mombasa">Mombasa</option><option value="Kisumu">Kisumu</option><option value="Nakuru">Nakuru</option><option value="Eldoret">Eldoret</option><option value="Garissa">Garissa</option><option value="Marsabit">Marsabit</option><option value="Kakamega">Kakamega</option><option value="Kitui">Kitui</option><option value="Lodwar">Lodwar</option>
+          </select>
+        </div>
+      </div>
+      <div class="forecast-summary panel">
+        <div><div class="eyebrow">RIGHT NOW</div><b id="forecast-current">—°C</b><span id="forecast-description">Loading local conditions</span></div>
+        <div class="summary-detail">
+          <span>Rain chance <b id="summary-rain">—%</b></span>
+          <span>Humidity <b id="summary-humidity">—%</b></span>
+          <span>Wind <b id="summary-wind">— km/h</b></span>
+        </div>
+      </div>
+      <div class="section-heading"><div><h2>Next 7 days</h2><p>Daily maximum, minimum and precipitation outlook.</p></div></div>
+      <div class="forecast-table panel" id="forecast-table"></div>
+      <div class="data-note"><span>ⓘ</span><div><b>Forecast guidance</b><p>Forecasts may change as new model runs arrive. Model output is not an official warning. Check the Kenya Meteorological Department for authoritative alerts.</p></div><a href="https://meteo.go.ke/" target="_blank" rel="noreferrer">KMD ↗</a></div>
+    </section>
+
+    <section class="content view-hidden" id="view-moon">
+      <div class="page-heading">
+        <div><div class="eyebrow">LOOK UP</div><h1>Moon <span class="green-text">calendar</span></h1><p class="subtitle">Upcoming lunar phases, calculated for your calendar.</p></div>
+        <div class="calendar-controls"><button class="subtle-btn" id="month-prev">←</button><b id="calendar-month">—</b><button class="subtle-btn" id="month-next">→</button></div>
+      </div>
+      <div class="moon-feature panel">
+        <div class="big-moon" id="big-moon">☾</div>
+        <div><div class="eyebrow">CURRENT PHASE</div><h2 id="calendar-phase">—</h2><p id="calendar-phase-detail">—</p><div class="phase-next" id="next-phases"></div></div>
+      </div>
+      <div class="calendar panel"><div class="calendar-grid" id="calendar-grid"></div><div class="calendar-legend"><span><i class="new-dot"></i> New moon</span><span><i class="full-dot"></i> Full moon</span><span><i class="quarter-dot"></i> Quarter</span></div></div>
+      <div class="data-note"><span>ⓘ</span><div><b>About these dates</b><p>Moon phase dates are astronomical calculations shown in East Africa Time. Local viewing conditions depend on cloud cover and horizon visibility.</p></div></div>
+    </section>
+
+    <section class="content view-hidden" id="view-risks">
+      <div class="page-heading"><div><div class="eyebrow">PREPARE WITH CONFIDENCE</div><h1>Risk <span class="green-text">outlook</span></h1><p class="subtitle">Local signals from the current forecast, with a clear time window.</p></div><div class="updated-pill"><span class="live-dot"></span>Forecast-based indicators</div></div>
+      <div class="risk-intro panel"><div class="risk-intro-icon">◇</div><div><h3>What these signals mean</h3><p>These are screening indicators based on forecast weather, not official disaster predictions. The app does not know a disaster’s exact start or stop date. Check KMD and your county disaster office before taking action.</p></div></div>
+      <div id="risk-cards" class="risk-cards"></div>
+      <div class="data-note"><span>ⓘ</span><div><b>Need an official warning?</b><p>For flood, drought, storm or heat advisories, follow Kenya Meteorological Department guidance and local emergency services.</p></div><a href="https://meteo.go.ke/" target="_blank" rel="noreferrer">Visit KMD ↗</a></div>
+    </section>
+
+    <section class="content view-hidden" id="view-alerts">
+      <div class="page-heading"><div><div class="eyebrow">PERSONAL WEATHER WATCH</div><h1>My <span class="green-text">alerts</span></h1><p class="subtitle">Browser reminders for the weather patterns you care about.</p></div><button class="primary-btn" id="reminder-open-2">＋ New reminder</button></div>
+      <div class="alert-explainer panel"><div class="reminder-art">◷</div><div><h3>Alerts on this device</h3><p>Reminders run in this browser while the app is open. Allow notifications for on-screen alerts. This demo stores your settings on this device and does not send background SMS or push messages.</p></div></div>
+      <div id="reminder-list" class="reminder-list"></div>
+    </section>
+
+    <section class="content view-hidden pro-view" id="view-met-desk">
+      <div class="page-heading"><div><div class="eyebrow">FIELD INTELLIGENCE</div><h1>Meteorologist <span class="green-text">desk</span></h1><p class="subtitle">A county-level monitoring workspace for weather teams.</p></div><div class="role-chip">◈ PROFESSIONAL VIEW</div></div>
+      <div class="pro-metrics">
+        <div class="metric-card"><span>Counties monitored</span><b>47</b><small>Kenya coverage</small></div>
+        <div class="metric-card"><span>Current location</span><b id="pro-place">Nairobi</b><small>Live model point forecast</small></div>
+        <div class="metric-card"><span>Next 24h rain</span><b id="pro-rain">— mm</b><small>Open-Meteo model guidance</small></div>
+        <div class="metric-card"><span>Active local signals</span><b id="pro-signals">—</b><small>Screening indicators only</small></div>
+      </div>
+      <div class="pro-grid">
+        <div class="panel"><div class="panel-head"><div><div class="eyebrow">COUNTY SNAPSHOT</div><h3>Kenya regional watchlist</h3></div><span class="data-badge">MODEL GUIDANCE</span></div><div class="county-list" id="county-list"></div></div>
+        <div class="panel"><div class="panel-head"><div><div class="eyebrow">SEASONAL MONITORING</div><h3>ENSO and rainfall context</h3></div></div>
+          <div class="pro-enso"><div class="pro-enso-icon">≈</div><b>Use official ensemble outlooks</b><p>Compare ENSO, Indian Ocean Dipole (IOD), and KMD seasonal guidance. Do not infer Kenyan rainfall onset from ENSO status alone.</p><a class="official-link" href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/" target="_blank" rel="noreferrer">NOAA CPC ENSO diagnostics ↗</a><a class="official-link" href="https://meteo.go.ke/our-products/seasonal-forecast/" target="_blank" rel="noreferrer">KMD seasonal forecast ↗</a></div>
+        </div>
+      </div>
+      <div class="data-note"><span>ⓘ</span><div><b>Data provenance</b><p>Forecast values are model guidance supplied by Open-Meteo. NASA POWER satellite-derived daily precipitation is available for historical context in the integration layer; production use should persist validated observations and cite the dataset in exports. This interface is a prototype, not an operational warning system.</p></div><a href="https://power.larc.nasa.gov/api/pages/" target="_blank" rel="noreferrer">NASA POWER ↗</a></div>
+    </section>
+
+    <footer class="site-footer">Weather.Mania <span>•</span> Built for Kenya <span>•</span> Forecast guidance is not an official warning.</footer>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="reminder-modal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    <div class="eyebrow">PERSONAL WEATHER WATCH</div>
+    <h2 id="modal-title">Create a reminder</h2>
+    <p>Choose a pattern to watch in <b id="modal-place">Nairobi</b>.</p>
+    <form id="reminder-form">
+      <label>Reminder name<input id="reminder-name" placeholder="e.g. Heavy rain watch" required maxlength="50"></label>
+      <label>Weather pattern<select id="reminder-type"><option value="rain">Rain or thunderstorms</option><option value="wind">Strong winds</option><option value="heat">High temperatures</option><option value="daily">Daily forecast summary</option></select></label>
+      <label>Check at<input id="reminder-time" type="time" value="07:00" required></label>
+      <label class="check-row"><input id="notify-check" type="checkbox" checked> Show a browser notification when available</label>
+      <button class="primary-btn full-btn" type="submit">Save reminder</button>
+    </form>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
